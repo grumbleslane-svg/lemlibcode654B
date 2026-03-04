@@ -78,7 +78,7 @@ void autonomous() {
 }
 
 void opcontrol() {
-    while (true) {
+    while (driverControlEnabled) {
         driver.update(); 
         pros::delay(15);
 }

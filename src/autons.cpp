@@ -48,12 +48,12 @@ void Autons::RedLeft() {
     MG.set_value(false);
     lemlib::MoveToPointParams params;
     params.forwards = false;
-    chassis->moveToPoint(-9.8, 9.8, 3000, params,true); // moves to goal, backwards
+    chassis->moveToPoint(-11, 11, 3000, params,true); // moves to goal, backwards
     pros::delay(800);               //let robot settle
     back_motor.move(127);  // outake blocks
-    pros::delay(2000);
+    pros::delay(1500);
 
-    chassis->setPose(-9.0,9.0,chassis->getPose().theta);   // scores blocks
+    chassis->setPose(-11.0,11.0,chassis->getPose().theta);   // scores blocks
     front_motor.brake(); //stop front motor
     back_motor.brake();    // stop back motor
     ML.set_value(true);
@@ -66,21 +66,24 @@ void Autons::RedLeft() {
     
     front_motor.move(0);
     MG.set_value(true);
-    chassis->moveToPoint(-41.427+1, 48.244, 5000,{.maxSpeed=97}, false); // goes infront of match loader
-
-    chassis->turnToPoint(-67.8, 46.5, 3000,{},false); //turns to face match loader
-    
-    chassis->moveToPoint(-60.75, 46.5, 1500,{.maxSpeed=90},true); // goes to match loader
-
     front_motor.move(127);
-    pros::delay(1100); // intake
+    chassis->moveToPoint(-41.427+1, 48.244+5, 5000,{.maxSpeed=97}, false); // goes infront of match loader
+    
+    chassis->turnToHeading(278,3000,{},false); //turns to face match loader
+    
+    chassis->moveToPose(-60.75-6, 46.5+10,278, 2000,{.minSpeed=90},true); // goes to match loader
+
+    
+    pros::delay(1300); // intake
     front_motor.move(0);
 
-    chassis->moveToPoint(-15.5, 47.236, 1000, params, false); // should go backward into long goal
+
+
+    chassis->moveToPoint(-20.5+2, 47.236, 1000, params, false); // should go backward into long goal
     pros::delay(900); // let robot settle
     front_motor.move(127);
     back_motor.move(-127); // score blocks
-    pros::delay(10000);
+    pros::delay(1500);
     front_motor.move(0); // stop front motor
     back_motor.move(0); 
      //--
@@ -89,5 +92,12 @@ void Autons::RedLeft() {
     //--
     //--
     //--
-    //move backward
+    /*
+    chassis->moveToPoint(-30.5, 47.236, 1000, {},false);
+    chassis->moveToPose(-30.5, 57.7, 91, 1000,{},false); 
+
+    chassis->moveToPose(-10, 57.7, 91, 1000,{},true); 
+    pros::delay(500); 
+    Wing.set_value(false);
+    */
 }

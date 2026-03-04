@@ -4,16 +4,14 @@
 pros::Controller controller(pros::E_CONTROLLER_MASTER);
 
 // motor groups
-pros::MotorGroup leftMotors({-1, -2, 4}, pros::MotorGearset::blue);
-pros::MotorGroup rightMotors({-8, 9, 10}, pros::MotorGearset::blue);
+pros::MotorGroup leftMotors({-13, -2, 14}, pros::MotorGearset::blue);
+pros::MotorGroup rightMotors({-8, 7, 10}, pros::MotorGearset::blue);
 
 // sensors
 pros::Imu imu(12);
-pros::Rotation horizontalEnc(-11);
 pros::Rotation verticalEnc(19);
 
 // tracking wheels
-lemlib::TrackingWheel horizontal(&horizontalEnc, lemlib::Omniwheel::NEW_2, .4);
 lemlib::TrackingWheel vertical(&verticalEnc, lemlib::Omniwheel::NEW_2, -.5);
 
 // extra motors
@@ -34,7 +32,7 @@ lemlib::Drivetrain drivetrain(&leftMotors, &rightMotors, 11.425,
 lemlib::ControllerSettings linearController(
     10, 
     1, 
-    50, 
+    60, 
     3, 
     1, 
     100, 
@@ -43,9 +41,9 @@ lemlib::ControllerSettings linearController(
     20
 );
 lemlib::ControllerSettings angularController(
-    6, 
+    10, 
     0, 
-    49, 
+    80, 
     3, 
     1, 
     100, 
@@ -57,7 +55,7 @@ lemlib::ControllerSettings angularController(
 lemlib::OdomSensors sensors(
     &vertical, 
     nullptr, 
-    &horizontal, 
+    nullptr, //horizontal gone
     nullptr, 
     &imu
 );

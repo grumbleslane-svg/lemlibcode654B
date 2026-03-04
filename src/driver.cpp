@@ -21,12 +21,12 @@ void DriverControl::update() {
     }
     //---------------------------Test----------------------------------------
     // Autonomous turn test on button press A
-    if (controller->get_digital_new_press(pros::E_CONTROLLER_DIGITAL_UP)) {
+    /*if (controller->get_digital_new_press(pros::E_CONTROLLER_DIGITAL_UP)) {
     driverControlEnabled = false; // turn off driver control 
     autonomous(); // run auton 
     driverControlEnabled = true;  // turn on
     }
-
+    */
     // Front motor control with R2 and R1 buttons
     
 
@@ -48,8 +48,8 @@ void DriverControl::update() {
     if (controller->get_digital(pros::E_CONTROLLER_DIGITAL_RIGHT)) {
         mgState = false; 
         MG.set_value(mgState);
-        front_motor.move(127);
-        back_motor.move(127);
+        front_motor.move(97);
+        back_motor.move(87);
     }else{
         mgState = true; 
         MG.set_value(mgState);
