@@ -5,9 +5,6 @@ Autons::Autons(lemlib::Chassis* chassis)
     : chassis(chassis) {}
 
 // Example auton
-void Autons::skills(){
-
-}
 void Autons::testAuton() {
    
 }
@@ -28,8 +25,8 @@ void Autons::BlueRight() {
     chassis->moveToPoint(-61.4, -20, 5000,{.maxSpeed=97},true);
 }
 void Autons::BlueLeft() {
-    RedLeft();
-
+    // use the red-left routine since they are equivalent
+    this->RedLeft();
 }
 void Autons::RedLeft() {
     chassis->setPose(-47.4, 17.6, 79.5); // starting pose

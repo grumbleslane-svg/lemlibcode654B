@@ -7,12 +7,23 @@ public:
     Autons(lemlib::Chassis* chassis);
 
     void testAuton();      
-    void skillsAuton();    
-    void RedLeft();
+    void skillsAuton(); 
+
+    // field-specific autons (merged from previous branch)
     void RedRight();
-    void BlueLeft();
     void BlueRight();
-    void skills();
+    void BlueLeft();
+    void RedLeft();
+
+    void M3L4Right();
+    void Push7Left();
+    void AWPleft();
+
+    void collect();
+    void load();
+    void middle_score();
+    void long_score();
+    void wing();
 
 private:
     lemlib::Chassis* chassis;
