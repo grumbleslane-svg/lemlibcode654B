@@ -93,27 +93,51 @@ void Autons::skillsAuton(){
 
 
 void Autons::Push7Left(){
-    
+    //angular test
+    chassis->turnToHeading(90, 1500);
+    pros::delay(500);
+
+    // Back to 0°
+    chassis->turnToHeading(0, 1500);
+    pros::delay(500);
+
+    // 180°
+    chassis->turnToHeading(180, 2000);
+    pros::delay(500);
+
+    // Back to 0°
+    chassis->turnToHeading(0, 2000);
 }
 
 
 void Autons::M3L4Right(){
 
 
-chassis->setPose(-47,16.7,0);
-chassis->moveToPoint(-47,47,3000,{.maxSpeed = 90},false);
-chassis->turnToHeading(270,2000,{},false);
-chassis->moveToPoint(-57,47,3000,{.maxSpeed = 100},true);
+chassis->setPose(-47,18.7,0);
+chassis->moveToPoint(-47,52,3000,{.maxSpeed = 85},false);
+chassis->turnToHeading(269,2000,{},false);
+chassis->moveToPoint(-57,52,3000,{.maxSpeed = 95},true);
 load();
-chassis->moveToPoint(-30,47,3000,{.forwards = false,.maxSpeed = 90},true);
-long_score(3000);
-chassis->moveToPoint(-38,47,3000,{.maxSpeed = 95},false);
-chassis->turnToPoint(-22.8,22.6,3000,{},false);
-chassis->moveToPose(-22.8,22.6,135,3000 ,{.maxSpeed = 110} , false);
+chassis->moveToPoint(-20,52,1000,{.forwards = false,.maxSpeed = 85},true);
+pros::delay(1000);
+long_score(1000);
+chassis->moveToPoint(-38,52,3000,{.maxSpeed = 90},false);
+
+chassis->turnToHeading(150,3000,{},false);
+chassis->moveToPoint(-22+8,22.6,3000 ,{.maxSpeed = 85} , true);
+collect(2000);
 chassis->turnToHeading(315,3000,{},false);
-chassis->moveToPoint(-11,11,3000,{.forwards = false,.maxSpeed = 90},false);
+chassis->moveToPoint(-1,9,1000,{.forwards = false,.maxSpeed = 85},false);
+chassis->setPose(-7,7,315);
 middle_score(3000);
+//go back a little bit
+chassis->turnToHeading(90,1000,{},false);
+chassis->moveToPoint(-23,37,2000,{},false);
+chassis->turnToHeading(270,1000,{},false);
+chassis->moveToPoint(-10,37,2000,{.forwards = false},false);
 //wing later
+
+
 }
 
 
