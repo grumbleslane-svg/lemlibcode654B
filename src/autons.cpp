@@ -4,13 +4,157 @@
 Autons::Autons(lemlib::Chassis* chassis)
     : chassis(chassis) {}
 
-// Example auton
+void Autons::collect(int time){
 
-void Autons::testAuton() {
-   
+    ML.set_value(true);
+    front_motor.move(127);
+    pros::delay(time);
+    ML.set_value(false);
+    front_motor.move(0);
+
 }
 
-// Add more autons here
+void Autons::middle_score(int time){
+    front_motor.move(127);
+    back_motor.move(127);
+    pros::delay(time);
+    front_motor.move(0);
+    back_motor.move(0);
+
+}
+
+void Autons::load(){
+    ML.set_value(true);
+    front_motor.move(127);
+    pros::delay(1100);
+    front_motor.move(0);
+}
+
+void Autons::long_score(int time){
+    front_motor.move(127);
+    back_motor.move(-127);
+    pros::delay(time);
+    front_motor.move(0);
+    back_motor.move(0);
+
+}
+
+void Autons::wing(){
+    
+}
+
+
+void Autons::testAuton() {
+   /*
+    //angular test
+    chassis->turnToHeading(90, 1500);
+    pros::delay(500);
+
+    // Back to 0°
+    chassis->turnToHeading(0, 1500);
+    pros::delay(500);
+
+    // 180°
+    chassis->turnToHeading(180, 2000);
+    pros::delay(500);
+
+    // Back to 0°
+    chassis->turnToHeading(0, 2000);
+    */
+    /*
+    //LAteral test
+    chassis->moveToPoint(0, 24, 2000,{.maxSpeed = 100});
+
+    pros::delay(500);
+
+    // Backward 24"
+    chassis->moveToPoint(0, 0, 2000,{.maxSpeed = 100});
+
+    pros::delay(500);
+
+    // Forward 48"
+    chassis->moveToPoint(0, 48, 3000, {.maxSpeed = 85});
+
+    pros::delay(500);
+
+    // Back to start
+    chassis->moveToPoint(0, 0, 3000,{.maxSpeed = 85});
+
+    pros::delay(800);
+    */
+}
+
+
+
+void Autons::skillsAuton(){
+
+}
+
+
+
+void Autons::Push7Left(){
+    
+}
+
+
+void Autons::M3L4Right(){
+
+
+chassis->setPose(-47,16.7,0);
+chassis->moveToPoint(-47,47,3000,{.maxSpeed = 90},false);
+chassis->turnToHeading(270,2000,{},false);
+chassis->moveToPoint(-57,47,3000,{.maxSpeed = 100},true);
+load();
+chassis->moveToPoint(-30,47,3000,{.forwards = false,.maxSpeed = 90},true);
+long_score(3000);
+chassis->moveToPoint(-38,47,3000,{.maxSpeed = 95},false);
+chassis->turnToPoint(-22.8,22.6,3000,{},false);
+chassis->moveToPose(-22.8,22.6,135,3000 ,{.maxSpeed = 110} , false);
+chassis->turnToHeading(315,3000,{},false);
+chassis->moveToPoint(-11,11,3000,{.forwards = false,.maxSpeed = 90},false);
+middle_score(3000);
+//wing later
+}
+
+
+void Autons::AWPleft(){
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//old autons for ref
+/*
 void Autons::skillsAuton() {
     front_motor.move(127);
     pros::delay(10000);
@@ -94,5 +238,6 @@ void Autons::RedLeft() {
     chassis->moveToPose(-10, 57.7, 91, 1000,{},true); 
     pros::delay(500); 
     Wing.set_value(false);
-    */
+    
 }
+*/

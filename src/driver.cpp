@@ -20,13 +20,13 @@ void DriverControl::update() {
     chassis->arcade(leftY, rightX);
     }
     //---------------------------Test----------------------------------------
-    // Autonomous turn test on button press A
-    /*if (controller->get_digital_new_press(pros::E_CONTROLLER_DIGITAL_UP)) {
+    // Autonomous turn test on button press up
+    if (controller->get_digital_new_press(pros::E_CONTROLLER_DIGITAL_UP)) {
     driverControlEnabled = false; // turn off driver control 
     autonomous(); // run auton 
     driverControlEnabled = true;  // turn on
     }
-    */
+    
     // Front motor control with R2 and R1 buttons
     
 

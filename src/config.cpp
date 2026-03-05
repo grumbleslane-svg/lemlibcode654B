@@ -4,19 +4,19 @@
 pros::Controller controller(pros::E_CONTROLLER_MASTER);
 
 // motor groups
-pros::MotorGroup leftMotors({-13, -2, 14}, pros::MotorGearset::blue);
-pros::MotorGroup rightMotors({-8, 7, 10}, pros::MotorGearset::blue);
+pros::MotorGroup leftMotors({-11, -12, 13}, pros::MotorGearset::blue);
+pros::MotorGroup rightMotors({-18, 19, 20}, pros::MotorGearset::blue);
 
 // sensors
-pros::Imu imu(12);
-pros::Rotation verticalEnc(19);
+pros::Imu imu(15);
+pros::Rotation verticalEnc(-17);
 
 // tracking wheels
-lemlib::TrackingWheel vertical(&verticalEnc, lemlib::Omniwheel::NEW_2, -.5);
+lemlib::TrackingWheel vertical(&verticalEnc, lemlib::Omniwheel::NEW_2, 0);
 
 // extra motors
-pros::Motor front_motor(18, pros::MotorGearset::blue);
-pros::Motor back_motor(15, pros::MotorGearset::blue);
+pros::Motor front_motor(-4, pros::MotorGearset::blue);
+pros::Motor back_motor(-6, pros::MotorGearset::blue);
 
 // pistons
 pros::adi::DigitalOut Wing('A');
@@ -29,27 +29,27 @@ bool driverControlEnabled = true;
 lemlib::Drivetrain drivetrain(&leftMotors, &rightMotors, 11.425,
                               lemlib::Omniwheel::NEW_325, 450, 2);
 
-lemlib::ControllerSettings linearController(
-    10, 
-    1, 
-    60, 
-    3, 
-    1, 
-    100, 
-    3, 
-    500, 
-    20
-);
-lemlib::ControllerSettings angularController(
-    10, 
+lemlib::ControllerSettings linearController( //distance >= 48 inches use speed limit = 85
+    9, 
     0, 
-    80, 
+    170, 
     3, 
     1, 
     100, 
     3, 
     500, 
-    0
+    18
+);
+lemlib::ControllerSettings angularController( //almost perfect small jitter
+    6, 
+    0, 
+    59.2, 
+    3, 
+    1, 
+    100, 
+    3, 
+    500, 
+    18
 );
 
 lemlib::OdomSensors sensors(
