@@ -7,18 +7,18 @@ public:
     Autons(lemlib::Chassis* chassis);
 
 
-    void collect(int time);
+    void collect(bool on);
     void middle_score(int time);
     void load();
 
     void long_score(int time);
-    void wing();
+    void wing(bool on);
 
     void testAuton();      
     void skillsAuton(); 
 
-    void M3L4Right();
-    void Push7Left();
+    void M3L4Left();
+    void Push7Right();
     void AWPleft();
 
     

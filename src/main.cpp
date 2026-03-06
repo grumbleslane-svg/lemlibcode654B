@@ -54,12 +54,12 @@ void autonomous() {
             autons.skillsAuton();
             break;
 
-        case AUTON_PUSH7LEFT:
-            autons.Push7Left();
+        case AUTON_PUSH7RIGHT:
+            autons.Push7Right();
             break;
 
-        case AUTON_M3L4RIGHT:
-            autons.M3L4Right();
+        case AUTON_M3L4LEFT:
+            autons.M3L4Left();
             break;
 
         case AUTON_AWPLEFT:
@@ -67,7 +67,7 @@ void autonomous() {
             break;
 
         default:
-            autons.M3L4Right(); // fallback
+            autons.M3L4Left(); // fallback
             break;
     }
 }

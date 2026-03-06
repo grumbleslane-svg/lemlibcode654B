@@ -14,6 +14,7 @@ static lv_obj_t* skillsBtn;
 static lv_obj_t* push7Btn;
 static lv_obj_t* m3l4Btn;
 static lv_obj_t* awpBtn;
+static lv_obj_t* coordLabel;
 
 // Styles
 static lv_style_t selectedStyle;
@@ -46,6 +47,10 @@ void buildHomeScreen() {
     lv_obj_add_event_cb(fieldBtn, [](lv_event_t* e){
         lv_screen_load(fieldScreen);
     }, LV_EVENT_CLICKED, NULL);
+    coordLabel = lv_label_create(homeScreen);
+    lv_label_set_text(coordLabel, "X: 0  Y: 0  H: 0");
+    lv_obj_set_pos(coordLabel, 10, 10);   // move wherever you want
+
 }
 
 // ------------------------
@@ -72,31 +77,31 @@ void buildFieldScreen() {
     // Push7Left
     push7Btn = lv_button_create(fieldScreen);
     lv_obj_set_size(push7Btn, btnW, btnH);
-    lv_obj_set_pos(push7Btn, 20, 80);
+    lv_obj_set_pos(push7Btn, 250, 20);
     lv_obj_add_style(push7Btn, &normalStyle, LV_PART_MAIN);
     lv_obj_t* p7Label = lv_label_create(push7Btn);
     lv_label_set_text(p7Label, "Push7Left");
     lv_obj_center(p7Label);
     lv_obj_add_event_cb(push7Btn, [](lv_event_t* e){
-        selectedAuton = AUTON_PUSH7LEFT;
+        selectedAuton = AUTON_PUSH7RIGHT;
     }, LV_EVENT_CLICKED, NULL);
 
     // M3L4Right
     m3l4Btn = lv_button_create(fieldScreen);
     lv_obj_set_size(m3l4Btn, btnW, btnH);
-    lv_obj_set_pos(m3l4Btn, 20, 140);
+    lv_obj_set_pos(m3l4Btn, 250, 80);
     lv_obj_add_style(m3l4Btn, &normalStyle, LV_PART_MAIN);
     lv_obj_t* m3Label = lv_label_create(m3l4Btn);
     lv_label_set_text(m3Label, "M3L4Right");
     lv_obj_center(m3Label);
     lv_obj_add_event_cb(m3l4Btn, [](lv_event_t* e){
-        selectedAuton = AUTON_M3L4RIGHT;
+        selectedAuton = AUTON_M3L4LEFT;
     }, LV_EVENT_CLICKED, NULL);
 
     // AWPleft
     awpBtn = lv_button_create(fieldScreen);
     lv_obj_set_size(awpBtn, btnW, btnH);
-    lv_obj_set_pos(awpBtn, 20, 200);
+    lv_obj_set_pos(awpBtn, 20, 80);
     lv_obj_add_style(awpBtn, &normalStyle, LV_PART_MAIN);
     lv_obj_t* awpLabel = lv_label_create(awpBtn);
     lv_label_set_text(awpLabel, "AWPleft");
@@ -108,7 +113,7 @@ void buildFieldScreen() {
     // Back button
     lv_obj_t* backBtn = lv_button_create(fieldScreen);
     lv_obj_set_size(backBtn, 120, 40);
-    lv_obj_set_pos(backBtn, 220, 260);
+    lv_obj_set_pos(backBtn, 150, 180);
 
     lv_obj_t* backLabel = lv_label_create(backBtn);
     lv_label_set_text(backLabel, "Back");
@@ -131,10 +136,10 @@ void updateAutonHighlight() {
     if (selectedAuton == AUTON_SKILLS)
         lv_obj_add_style(skillsBtn, &selectedStyle, LV_PART_MAIN);
 
-    if (selectedAuton == AUTON_PUSH7LEFT)
+    if (selectedAuton == AUTON_PUSH7RIGHT)
         lv_obj_add_style(push7Btn, &selectedStyle, LV_PART_MAIN);
 
-    if (selectedAuton == AUTON_M3L4RIGHT)
+    if (selectedAuton == AUTON_M3L4LEFT)
         lv_obj_add_style(m3l4Btn, &selectedStyle, LV_PART_MAIN);
 
     if (selectedAuton == AUTON_AWPLEFT)
@@ -169,4 +174,17 @@ void uiUpdate() {
     if (lv_screen_active() == fieldScreen) {
         updateAutonHighlight();
     }
+    // Get pose from your odometry system
+    double x = chassis.getPose().x;
+    double y = chassis.getPose().y;
+    double h = chassis.getPose().theta;
+
+    // Format text
+    char buf[64];
+    snprintf(buf, sizeof(buf), "X: %.1f  Y: %.1f  H: %.1f", x, y, h);
+
+    // Update label
+    lv_label_set_text(coordLabel, buf);
+    pros::delay(50);
+
 }

@@ -4,22 +4,24 @@
 Autons::Autons(lemlib::Chassis* chassis)
     : chassis(chassis) {}
 
-void Autons::collect(int time){
-
+void Autons::collect(bool on){
+    if (on == true){
     ML.set_value(true);
     front_motor.move(127);
-    pros::delay(time);
+    }else{
     ML.set_value(false);
     front_motor.move(0);
-
+    }
 }
 
 void Autons::middle_score(int time){
+    MG.set_value(false);
     front_motor.move(127);
     back_motor.move(127);
     pros::delay(time);
     front_motor.move(0);
     back_motor.move(0);
+    MG.set_value(true);
 
 }
 
@@ -39,7 +41,12 @@ void Autons::long_score(int time){
 
 }
 
-void Autons::wing(){
+void Autons::wing(bool on){
+    if (on == true){
+    Wing.set_value(true);
+    }else{
+    Wing.set_value(false);    
+    }
     
 }
 
@@ -92,50 +99,65 @@ void Autons::skillsAuton(){
 
 
 
-void Autons::Push7Left(){
-    //angular test
-    chassis->turnToHeading(90, 1500);
-    pros::delay(500);
+void Autons::Push7Right(){
+ 
+    //get blocks
+    chassis->setPose(-45.25,-7.5,90);
+    chassis->turnToHeading(120,2000,{},false);//turn toward block
+    chassis->moveToPoint(-22,-22,2000,{.maxSpeed = 90},true);//go to blocks
+    pros::delay(1000);
+    collect(true);//collect
+    chassis->turnToHeading(210,2000,{},false);//turn towards goal
+    collect(false);//stop
 
-    // Back to 0°
-    chassis->turnToHeading(0, 1500);
-    pros::delay(500);
+    //score
+    chassis->moveToPoint(-37,-47,2000,{.maxSpeed = 90},false);//go infornt goal
+    chassis->turnToHeading(270,2000,{},false);//turn facing alliance
+    chassis->moveToPoint(-20,-47,1000,{.forwards = false,.maxSpeed = 90},true);//go into goal
+    pros::delay(1000);
+    long_score(1000);//score, issue with time
+    chassis->setPose(-23,-47,270);
 
-    // 180°
-    chassis->turnToHeading(180, 2000);
-    pros::delay(500);
+    //wing
+    chassis->moveToPoint(-47,-47,2000,{.maxSpeed = 90},false);//reverse
+    chassis->turnToHeading(300,2000,{},false);//turn toward side
+    chassis->moveToPoint(-25,-56,2000,{.forwards = false,.maxSpeed = 90},false);//go backwards toward point
+    chassis->turnToHeading(270,2000,{},false);
+    chassis->moveToPoint(-12,-56,2000,{.forwards = false,.maxSpeed = 90},false);//go backwards while wing down
 
-    // Back to 0°
-    chassis->turnToHeading(0, 2000);
 }
 
 
-void Autons::M3L4Right(){
+void Autons::M3L4Left(){
 
+    //long goal
+    chassis->setPose(-47,18.7,0);
+    chassis->moveToPoint(-47,52,3000,{.maxSpeed = 85},false);//infront loader
+    chassis->turnToHeading(270,2000,{},false);//turn toward loader
+    chassis->moveToPoint(-57,52,3000,{.maxSpeed = 95},true);//go to loader
+    load();//load
+    chassis->moveToPoint(-20,52,1000,{.forwards = false,.maxSpeed = 85},true);//go back
+    pros::delay(1000);
+    long_score(1000);//score, issue with time
 
-chassis->setPose(-47,18.7,0);
-chassis->moveToPoint(-47,52,3000,{.maxSpeed = 85},false);
-chassis->turnToHeading(269,2000,{},false);
-chassis->moveToPoint(-57,52,3000,{.maxSpeed = 95},true);
-load();
-chassis->moveToPoint(-20,52,1000,{.forwards = false,.maxSpeed = 85},true);
-pros::delay(1000);
-long_score(1000);
-chassis->moveToPoint(-38,52,3000,{.maxSpeed = 90},false);
+    //middle goal
+    chassis->moveToPoint(-38,52,3000,{.maxSpeed = 90},false);//move back a little bit
+    chassis->turnToHeading(150,3000,{},false);// turn toward blocks
+    chassis->moveToPoint(-22+8,22.6,3000 ,{.maxSpeed = 85} , true);//go to blocks
+    collect(true);//intake,fix this
+    chassis->turnToHeading(315,3000,{},false);//rotate 180 and face middle goal
+    collect(false);//stop intake
+    chassis->moveToPoint(-1,9,1000,{.forwards = false,.maxSpeed = 85},false);//go to middle goal
+    chassis->setPose(-7,7,315);//reset pose
+    middle_score(3000);//score
 
-chassis->turnToHeading(150,3000,{},false);
-chassis->moveToPoint(-22+8,22.6,3000 ,{.maxSpeed = 85} , true);
-collect(2000);
-chassis->turnToHeading(315,3000,{},false);
-chassis->moveToPoint(-1,9,1000,{.forwards = false,.maxSpeed = 85},false);
-chassis->setPose(-7,7,315);
-middle_score(3000);
-//go back a little bit
-chassis->turnToHeading(90,1000,{},false);
-chassis->moveToPoint(-23,37,2000,{},false);
-chassis->turnToHeading(270,1000,{},false);
-chassis->moveToPoint(-10,37,2000,{.forwards = false},false);
-//wing later
+    ///wing
+    chassis->moveToPoint(-11,11,1000,{.forwards = false,.maxSpeed = 85},false);//reverse a bit
+    chassis->turnToHeading(90,1000,{},false);//turn toward front of long goal
+    chassis->moveToPoint(-23,37,2000,{},false);//go to side of goal
+    chassis->turnToHeading(270,1000,{},false);//rotate facing alliance side
+    chassis->moveToPoint(-10,37,2000,{.forwards = false},false);//go backwards with wing
+
 
 
 }
