@@ -30,6 +30,8 @@ void Autons::load(){
     front_motor.move(127);
     pros::delay(1100);
     front_motor.move(0);
+    pros::delay(200);
+    //ML.set_value(false);
 }
 
 void Autons::long_score(int time){
@@ -102,28 +104,28 @@ void Autons::skillsAuton(){
 void Autons::Push7Right(){
  
     //get blocks
-    chassis->setPose(-45.25,-7.5,90);
-    chassis->turnToHeading(120,2000,{},false);//turn toward block
-    chassis->moveToPoint(-22,-22,2000,{.maxSpeed = 90},true);//go to blocks
-    pros::delay(1000);
+    chassis->setPose(-45.25,-7.5+2,90);
+    chassis->turnToHeading(120,800,{},false);//turn toward block
+    chassis->moveToPoint(-22,-22,1000,{.maxSpeed = 95},true);//go to blocks
+    pros::delay(500);
     collect(true);//collect
-    chassis->turnToHeading(210,2000,{},false);//turn towards goal
+    chassis->turnToHeading(210,1000,{},false);//turn towards goal
     collect(false);//stop
 
     //score
-    chassis->moveToPoint(-37,-47,2000,{.maxSpeed = 90},false);//go infornt goal
-    chassis->turnToHeading(270,2000,{},false);//turn facing alliance
-    chassis->moveToPoint(-20,-47,1000,{.forwards = false,.maxSpeed = 90},true);//go into goal
+    chassis->moveToPoint(-37,-47,1000,{.maxSpeed = 90},false);//go infornt goal
+    chassis->turnToHeading(270,1000,{},false);//turn facing alliance
+    chassis->moveToPoint(-15,-47,1000,{.forwards = false,.maxSpeed = 90},false);//go into goal
     pros::delay(1000);
     long_score(1000);//score, issue with time
-    chassis->setPose(-23,-47,270);
+    chassis->setPose(-20,-47,270);
 
     //wing
-    chassis->moveToPoint(-47,-47,2000,{.maxSpeed = 90},false);//reverse
-    chassis->turnToHeading(300,2000,{},false);//turn toward side
-    chassis->moveToPoint(-25,-56,2000,{.forwards = false,.maxSpeed = 90},false);//go backwards toward point
-    chassis->turnToHeading(270,2000,{},false);
-    chassis->moveToPoint(-12,-56,2000,{.forwards = false,.maxSpeed = 90},false);//go backwards while wing down
+    chassis->moveToPoint(-47,-47,1000,{.maxSpeed = 90},false);//reverse
+    chassis->turnToHeading(300,1000,{},false);//turn toward side
+    chassis->moveToPoint(-25,-56,1000,{.forwards = false,.maxSpeed = 90},false);//go backwards toward point
+    chassis->turnToHeading(270,1000,{},false);
+    chassis->moveToPoint(-12,-56,1000,{.forwards = false,.maxSpeed = 90},false);//go backwards while wing down
 
 }
 
@@ -131,32 +133,35 @@ void Autons::Push7Right(){
 void Autons::M3L4Left(){
 
     //long goal
-    chassis->setPose(-47,18.7,0);
+    chassis->setPose(-47,18.7+2,0);
     chassis->moveToPoint(-47,52,3000,{.maxSpeed = 85},false);//infront loader
+    ML.set_value(true);
     chassis->turnToHeading(270,2000,{},false);//turn toward loader
-    chassis->moveToPoint(-57,52,3000,{.maxSpeed = 95},true);//go to loader
-    load();//load
-    chassis->moveToPoint(-20,52,1000,{.forwards = false,.maxSpeed = 85},true);//go back
+    chassis->moveToPoint(-60,52,900,{.maxSpeed = 80},true);//go to loader
+    load();
+    chassis->moveToPoint(-20,52,500,{.forwards = false,.maxSpeed = 85},true);//go back
+    ML.set_value(false);
     pros::delay(1000);
     long_score(1000);//score, issue with time
 
     //middle goal
-    chassis->moveToPoint(-38,52,3000,{.maxSpeed = 90},false);//move back a little bit
-    chassis->turnToHeading(150,3000,{},false);// turn toward blocks
-    chassis->moveToPoint(-22+8,22.6,3000 ,{.maxSpeed = 85} , true);//go to blocks
+    chassis->moveToPoint(-38,52,1000,{.maxSpeed = 90},false);//move back a little bit
+    chassis->turnToHeading(150,1000,{},false);// turn toward blocks
+    chassis->moveToPoint(-22+8,22.6,1000 ,{.maxSpeed = 85} , true);//go to blocks
+    pros::delay(500);
     collect(true);//intake,fix this
-    chassis->turnToHeading(315,3000,{},false);//rotate 180 and face middle goal
+    chassis->turnToHeading(315,1000,{},false);//rotate 180 and face middle goal
     collect(false);//stop intake
-    chassis->moveToPoint(-1,9,1000,{.forwards = false,.maxSpeed = 85},false);//go to middle goal
+    chassis->moveToPoint(-1,3,1000,{.forwards = false,.maxSpeed = 85},false);//go to middle goal
     chassis->setPose(-7,7,315);//reset pose
-    middle_score(3000);//score
+    middle_score(1000);//score
 
     ///wing
-    chassis->moveToPoint(-11,11,1000,{.forwards = false,.maxSpeed = 85},false);//reverse a bit
-    chassis->turnToHeading(90,1000,{},false);//turn toward front of long goal
-    chassis->moveToPoint(-23,37,2000,{},false);//go to side of goal
+    chassis->moveToPoint(-20,20,1000,{.maxSpeed = 85},false);//reverse a bit
+    chassis->turnToHeading(330,1000,{},false);//turn toward front of long goal
+    chassis->moveToPoint(-40,35,1000,{},false);//go to side of goal
     chassis->turnToHeading(270,1000,{},false);//rotate facing alliance side
-    chassis->moveToPoint(-10,37,2000,{.forwards = false},false);//go backwards with wing
+    chassis->moveToPoint(-10,35,2000,{.forwards = false,.maxSpeed = 60},false);//go backwards with wing
 
 
 
@@ -277,7 +282,7 @@ void Autons::RedLeft() {
     //--
     //--
     //--
-    /*
+    
     chassis->moveToPoint(-30.5, 47.236, 1000, {},false);
     chassis->moveToPose(-30.5, 57.7, 91, 1000,{},false); 
 
