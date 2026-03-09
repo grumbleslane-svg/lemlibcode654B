@@ -67,7 +67,7 @@ void autonomous() {
             break;
 
         default:
-            autons.Push7Right(); // fallback
+            autons.M3L4Left(); // fallback
             break;
     }
 }

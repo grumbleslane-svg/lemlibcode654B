@@ -140,10 +140,11 @@ void Autons::M3L4Left(){
     chassis->moveToPoint(-60,52,900,{.maxSpeed = 80},true);//go to loader
     load();
     chassis->moveToPoint(-20,52,500,{.forwards = false,.maxSpeed = 85},true);//go back
-    ML.set_value(false);
+    
     pros::delay(1000);
     long_score(1000);//score, issue with time
-
+    ML.set_value(false);
+    
     //middle goal
     chassis->moveToPoint(-38,52,1000,{.maxSpeed = 90},false);//move back a little bit
     chassis->turnToHeading(150,1000,{},false);// turn toward blocks
