@@ -42,8 +42,8 @@ lemlib::ControllerSettings linearController( //distance >= 48 inches use speed l
 );
 lemlib::ControllerSettings angularController( //almost perfect small jitter
     6, 
-    0, 
-    59.2, 
+    0.01, 
+    60.2, 
     3, 
     1.5, 
     100, 

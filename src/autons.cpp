@@ -104,28 +104,28 @@ void Autons::skillsAuton(){
 void Autons::Push7Right(){
  
     //get blocks
-    chassis->setPose(-45.25,-7.5+5,90);
-    chassis->turnToHeading(120,700,{},false);//turn toward block
+    chassis->setPose(-45.25,-7.5+1,90);
+    chassis->turnToHeading(120,800,{},false);//turn toward block
     chassis->moveToPoint(-22,-22,900,{.maxSpeed = 95},true);//go to blocks
     pros::delay(500);
     collect(true);//collect
-    chassis->turnToHeading(210,500,{},false);//turn towards goal
+    chassis->turnToHeading(210,300,{},false);//turn towards goal
     collect(false);//stop
 
     //score
     chassis->moveToPoint(-37,-47,600,{.maxSpeed = 90},false);//go infornt goal
     chassis->turnToHeading(270,300,{},false);//turn facing alliance
-    chassis->moveToPoint(-15,-47,800,{.forwards = false,.maxSpeed = 90},false);//go into goal
+    chassis->moveToPoint(-15,-47,700,{.forwards = false,.maxSpeed = 90},false);//go into goal
     pros::delay(1000);
     long_score(1000);//score, issue with time
     chassis->setPose(-20,-47,270);
 
     //wing
-    chassis->moveToPoint(-47,-47-4,600,{.maxSpeed = 90},false);//reverse
+    chassis->moveToPoint(-47+10,-47-3,600,{.maxSpeed = 90},false);//reverse
     chassis->turnToHeading(300,600,{},false);//turn toward side
-    chassis->moveToPoint(-25,-56-4,600,{.forwards = false,.maxSpeed = 90},false);//go backwards toward point
+    chassis->moveToPoint(-25,-56-3,600,{.forwards = false,.maxSpeed = 90},false);//go backwards toward point
     chassis->turnToHeading(270,600,{},false);
-    chassis->moveToPoint(-1,-56-4,600,{.forwards = false,.maxSpeed = 90},false);//go backwards while wing down
+    chassis->moveToPoint(-5,-56-3,600,{.forwards = false,.maxSpeed = 90},false);//go backwards while wing down
 
 }
 
@@ -134,9 +134,9 @@ void Autons::M3L4Left(){
 
     //long goal
     chassis->setPose(-47,18.7+2,0);
-    chassis->moveToPoint(-47,52,1000,{.maxSpeed = 85},false);//infront loader
+    chassis->moveToPoint(-47,52,3000,{.maxSpeed = 85},false);//infront loader
     ML.set_value(true);
-    chassis->turnToHeading(270,600,{},false);//turn toward loader
+    chassis->turnToHeading(270,2000,{},false);//turn toward loader
     chassis->moveToPoint(-60,52,900,{.maxSpeed = 80},true);//go to loader
     load();
     chassis->moveToPoint(-20,52,500,{.forwards = false,.maxSpeed = 85},true);//go back
