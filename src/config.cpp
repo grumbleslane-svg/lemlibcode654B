@@ -22,7 +22,7 @@ pros::Motor back_motor(-4, pros::MotorGearset::blue);
 pros::adi::DigitalOut Wing('A');
 pros::adi::DigitalOut ML('B');
 pros::adi::DigitalOut MG('C');
-pros::adi::DigitalOut MD('D');
+pros::adi::DigitalOut MD('E');
 bool driverControlEnabled = true;
 
 // drivetrain + chassis
