@@ -48,8 +48,8 @@ void DriverControl::update() {
     if (controller->get_digital(pros::E_CONTROLLER_DIGITAL_RIGHT)) {
         mgState = false; 
         MG.set_value(mgState);
-        front_motor.move(97);
-        back_motor.move(87);
+        front_motor.move(107);
+        back_motor.move(107);
     }else{
         mgState = true; 
         MG.set_value(mgState);
