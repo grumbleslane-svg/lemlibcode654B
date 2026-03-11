@@ -28,9 +28,9 @@ void Autons::middle_score(int time){
 void Autons::load(){
     ML.set_value(true);
     front_motor.move(127);
-    pros::delay(1100);
+    pros::delay(900);
     front_motor.move(0);
-    pros::delay(200);
+    pros::delay(100);
     //ML.set_value(false);
 }
 
@@ -125,7 +125,7 @@ void Autons::Push7Right(){
     chassis->turnToHeading(300,600,{},false);//turn toward side
     chassis->moveToPoint(-25,-56-3,600,{.forwards = false,.maxSpeed = 90},false);//go backwards toward point
     chassis->turnToHeading(270,600,{},false);
-    chassis->moveToPoint(-5,-56-3,600,{.forwards = false,.maxSpeed = 90},false);//go backwards while wing down
+    chassis->moveToPoint(-5,-56-3,2000,{.forwards = false,.maxSpeed = 90},false);//go backwards while wing down
 
 }
 
@@ -163,9 +163,9 @@ void Autons::M3L4Left(){
     ///wing
     chassis->moveToPoint(-20,20,600,{.maxSpeed = 85},false);//reverse a bit
     chassis->turnToHeading(330,100,{},false);//turn toward front of long goal
-    chassis->moveToPoint(-40,35,600,{.maxSpeed = 85},false);//go to side of goal
+    chassis->moveToPoint(-40,35-1,600,{.maxSpeed = 85},false);//go to side of goal
     chassis->turnToHeading(270,500,{},false);//rotate facing alliance side
-    chassis->moveToPoint(-10,35,2000,{.forwards = false,.maxSpeed = 60},false);//go backwards with wing
+    chassis->moveToPoint(-10,35-1,2000,{.forwards = false,.maxSpeed = 60},false);//go backwards with wing
 
 
 
@@ -177,15 +177,15 @@ void Autons::AWPleft(){
         //------long goal------//
             chassis->setPose(-47,-6,0);
             chassis->moveToPoint(-47,-4,300,{.maxSpeed = 90},false);
-            chassis->moveToPoint(-47,-52,1000,{.maxSpeed = 85},false);//infront loader
+            chassis->moveToPoint(-47,-47,1400,{.maxSpeed = 85},false);//infront loader
             ML.set_value(true);
             chassis->turnToHeading(270,600,{},false);//turn toward loader
-            chassis->moveToPoint(-60,-52,900,{.maxSpeed = 80},true);//go to loader
+            chassis->moveToPoint(-60,-47,900,{.maxSpeed = 80},true);//go to loader
 
             load();
             front_motor.move(127);
 
-            chassis->moveToPoint(-20,-52,500,{.forwards = false,.maxSpeed = 85},true);//go back
+            chassis->moveToPoint(-20,-52,800,{.forwards = false,.maxSpeed = 85},true);//go back
             
             pros::delay(1000);
             long_score(1000);//score, issue with time
@@ -193,10 +193,12 @@ void Autons::AWPleft(){
 
 
         //------middle blocks------//
+        /*
             chassis->moveToPoint(-38,-52,300,{.maxSpeed = 90},false);//move back a little bit
             chassis->turnToHeading(15,500,{},false);// turn toward blocks
             chassis->moveToPoint(-22+8,-22.6,1000 ,{.maxSpeed = 85} , true);//go to blocks
             pros::delay(500);
+            */
 
 
     //--------LEFT HALF---------------
