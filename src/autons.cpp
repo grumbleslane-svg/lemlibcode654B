@@ -15,6 +15,7 @@ void Autons::collect(bool on){
 
 void Autons::middle_score(int time){
     MG.set_value(false);
+    pros::delay(3000);
     front_motor.move(127);
     back_motor.move(127);
     pros::delay(time);
