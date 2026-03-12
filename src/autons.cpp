@@ -15,7 +15,7 @@ void Autons::collect(bool on){
 
 void Autons::middle_score(int time){
     MG.set_value(false);
-    pros::delay(1000);
+    pros::delay(300);
     front_motor.move(127);
     back_motor.move(127);
     pros::delay(time);
@@ -54,7 +54,9 @@ void Autons::wing(bool on){
 
 
 void Autons::testAuton() {
-   
+    chassis->setPose(-63,20,0);
+    chassis->moveToPoint(-65,20,0);
+    /*
     //angular test
     chassis->turnToHeading(90, 1500);
     pros::delay(500);
@@ -90,6 +92,7 @@ void Autons::testAuton() {
     chassis->moveToPoint(0, 0, 3000,{.maxSpeed = 85});
 
     pros::delay(800);
+    */
     
 }
 
@@ -116,7 +119,7 @@ void Autons::Push7Right(){
     chassis->moveToPoint(-37,-47,600,{.maxSpeed = 90},false);//go infornt goal
     chassis->turnToHeading(270,300,{},false);//turn facing alliance
     chassis->moveToPoint(-15,-47,700,{.forwards = false,.maxSpeed = 90},false);//go into goal
-    pros::delay(1000);
+    pros::delay(500);
     long_score(1000);//score, issue with time
     chassis->setPose(-20,-47,270);
 
@@ -125,7 +128,7 @@ void Autons::Push7Right(){
     chassis->turnToHeading(300,600,{},false);//turn toward side
     chassis->moveToPoint(-25,-56-3,600,{.forwards = false,.maxSpeed = 90},false);//go backwards toward point
     chassis->turnToHeading(270,600,{},false);
-    chassis->moveToPoint(-5,-56-3,2000,{.forwards = false,.maxSpeed = 90},false);//go backwards while wing down
+    chassis->moveToPoint(-5+3,-56-3,2000,{.forwards = false,.maxSpeed = 90},false);//go backwards while wing down
 
 }
 
@@ -156,7 +159,7 @@ void Autons::M3L4Left(){
     collect(true);//intake,fix this
     chassis->turnToHeading(315,700,{},false);//rotate 180 and face middle goal
     collect(false);//stop intake
-    chassis->moveToPoint(-3,5,400,{.forwards = false,.maxSpeed = 85},false);//go to middle goal
+    chassis->moveToPoint(-3+1,5-1,400,{.forwards = false,.maxSpeed = 85},false);//go to middle goal
     chassis->setPose(-7,7,315);//reset pose
     middle_score(1000);//score
 
@@ -182,7 +185,7 @@ void Autons::AWPleft(){
             chassis->moveToPoint(-47,-47,1400,{.forwards = false, .maxSpeed = 95},false);//infront loader
             ML.set_value(true);
             chassis->turnToHeading(270,600,{},false);//turn toward loader
-            chassis->moveToPoint(-65,-47,1600,{.maxSpeed = 95},true);//go to loader
+            chassis->moveToPoint(-68,-47,1600,{.maxSpeed = 95},true);//go to loader
 
             load();
             front_motor.move(127);

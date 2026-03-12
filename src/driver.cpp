@@ -48,6 +48,7 @@ void DriverControl::update() {
     if (controller->get_digital(pros::E_CONTROLLER_DIGITAL_RIGHT)) {
         mgState = false; 
         MG.set_value(mgState);
+        pros::delay(300);
         front_motor.move(107);
         back_motor.move(107);
     }else{
